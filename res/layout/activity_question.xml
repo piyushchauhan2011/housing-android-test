@@ -8,15 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".QuestionActivity" >
 
-    <Button
-        android:id="@+id/takeHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:onClick="showHint"
-        android:text="@string/hint" />
-
     <TextView
         android:id="@+id/displayQuestionNumber"
         android:layout_width="wrap_content"
@@ -26,6 +17,7 @@
         android:text="@string/questionNo" />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/takeHint"
@@ -50,14 +42,24 @@
         </EditText>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/takeHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/displayQuestionNumber"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="73dp"
+        android:onClick="showHint"
+        android:text="@string/hint" />
+
     <ImageView
         android:id="@+id/displayQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/displayQuestionNumber"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/currentQuestionImage"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/_19" />
 
 </RelativeLayout>

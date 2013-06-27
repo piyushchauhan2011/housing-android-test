@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class QuestionActivity extends Activity {
@@ -30,6 +31,7 @@ public class QuestionActivity extends Activity {
 	String hint2;
 	
 	EditText userAnswer;
+	ImageView displayQuestion;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +52,19 @@ public class QuestionActivity extends Activity {
 		
 		currentQuestion = Integer.parseInt(mCursor.getString(8));
 		
-		// fetch question row from questions table
-		Cursor mCursor_question = mHelper.getQuestionByID(currentQuestion+"");
-		mCursor_question.moveToFirst();
-		answer = mCursor_question.getString(2);
-		hint1 = mCursor_question.getString(3);
-		hint2 = mCursor_question.getString(4);
-		
-		Log.i(TAG , currentQuestion+"");
+//		// fetch question row from questions table
+//		Cursor mCursor_question = mHelper.getQuestionByID(currentQuestion+"");
+//		mCursor_question.moveToFirst();
+//		answer = mCursor_question.getString(2);
+//		hint1 = mCursor_question.getString(3);
+//		hint2 = mCursor_question.getString(4);
+//		
+//		Log.i(TAG , currentQuestion+"");
 		
 		userAnswer = (EditText) findViewById(R.id.userAnswer);
+		
+		displayQuestion = (ImageView) findViewById(R.id.displayQuestion);
+		//displayQuestion.setId(R.drawable._1);
 		
 	}
 
@@ -110,7 +115,6 @@ public class QuestionActivity extends Activity {
 		} else {
 			Toast.makeText(this, "Wrong Answer", Toast.LENGTH_LONG).show();
 		}
-		
 	}
 
 	public void showHint(View v) {
