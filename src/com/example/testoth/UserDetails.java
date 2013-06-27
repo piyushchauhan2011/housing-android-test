@@ -32,42 +32,42 @@ public class UserDetails extends Activity {
 		pref = getApplicationContext().getSharedPreferences("prefs", MODE_PRIVATE);
 		username = pref.getString("user_email", "");
 		
-		Cursor mCursor = mHelper.fetchUsersByEmail(username);
-		String email = mCursor.getString(0);
-		//String name = mCursor.getString(1); // TODO make a field and display the name in textview
-		//String mobileno = mCursor.getString(2);
-		String tagline = mCursor.getString(3);
-		String score_achieved = mCursor.getString(4);
-		String college = mCursor.getString(5);
-		// String pic = mCursor.getString(6); // TODO to implemented ( think some method )
-		String solved_questions = mCursor.getString(7);
-		String current = mCursor.getString(8);
-		//String time = mCursor.getString(9);
-		//String hint = mCursor.getString(10);
-		
-		TextView txtUsername = (TextView) findViewById(R.id.displayUsername);
-		TextView txtCollege = (TextView) findViewById(R.id.displayCollege);
-		TextView txtCurrentQuestion = (TextView) findViewById(R.id.displayCurrentQuestion);
-		TextView txtQuestionsAttempted = (TextView) findViewById(R.id.displayQuestionsAttempted);
-		TextView txtQuestionsRemaining = (TextView) findViewById(R.id.displayQuestionsRemaining);
-		TextView txtDisplayScore = (TextView) findViewById(R.id.displayScore);
-		TextView txtTagline = (TextView) findViewById(R.id.displayTagline);
-		ImageView imgPic = (ImageView) findViewById(R.id.displayRandomMinion);
-		
-		txtUsername.setText(email);
-		txtCollege.setText(college);
-		txtCurrentQuestion.setText(current);
-		txtQuestionsAttempted.setText(solved_questions);
-		
-		String remaining_questions = "";
-		// from the (current question)++ concatenate all the questions onwards into remaining_questions
-		txtQuestionsRemaining.setText(remaining_questions);
-		
-		txtDisplayScore.setText(score_achieved);
-		txtTagline.setText(tagline);
-		
-		// display minion using the pic string stored in db ( think of some method )
-		imgPic.setImageResource(R.drawable.ic_launcher);
+//		Cursor mCursor = mHelper.fetchUsersByEmail(username);
+//		String email = mCursor.getString(0);
+//		//String name = mCursor.getString(1); // TODO make a field and display the name in textview
+//		//String mobileno = mCursor.getString(2);
+//		String tagline = mCursor.getString(3);
+//		String score_achieved = mCursor.getString(4);
+//		String college = mCursor.getString(5);
+//		// String pic = mCursor.getString(6); // TODO to implemented ( think some method )
+//		String solved_questions = mCursor.getString(7);
+//		String current = mCursor.getString(8);
+//		//String time = mCursor.getString(9);
+//		//String hint = mCursor.getString(10);
+//		
+//		TextView txtUsername = (TextView) findViewById(R.id.displayUsername);
+//		TextView txtCollege = (TextView) findViewById(R.id.displayCollege);
+//		TextView txtCurrentQuestion = (TextView) findViewById(R.id.displayCurrentQuestion);
+//		TextView txtQuestionsAttempted = (TextView) findViewById(R.id.displayQuestionsAttempted);
+//		TextView txtQuestionsRemaining = (TextView) findViewById(R.id.displayQuestionsRemaining);
+//		TextView txtDisplayScore = (TextView) findViewById(R.id.displayScore);
+//		TextView txtTagline = (TextView) findViewById(R.id.displayTagline);
+//		ImageView imgPic = (ImageView) findViewById(R.id.displayRandomMinion);
+//		
+//		txtUsername.setText(email);
+//		txtCollege.setText(college);
+//		txtCurrentQuestion.setText(current);
+//		txtQuestionsAttempted.setText(solved_questions);
+//		
+//		String remaining_questions = "";
+//		// from the (current question)++ concatenate all the questions onwards into remaining_questions
+//		txtQuestionsRemaining.setText(remaining_questions);
+//		
+//		txtDisplayScore.setText(score_achieved);
+//		txtTagline.setText(tagline);
+//		
+//		// display minion using the pic string stored in db ( think of some method )
+//		imgPic.setImageResource(R.drawable.ic_launcher);
 			
 	}
 

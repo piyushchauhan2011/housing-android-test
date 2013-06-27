@@ -9,7 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+// THIS IS CHECKED
 
 public class RegisterActivity extends Activity {
 
@@ -21,7 +24,7 @@ public class RegisterActivity extends Activity {
 	EditText regTagline;
 	EditText regMobileno;
 	
-	EditText txtErrors;
+	TextView txtErrors;
 	
 	DBHelper mHelper;
 	
@@ -84,7 +87,7 @@ public class RegisterActivity extends Activity {
 		regCollege = (EditText) findViewById(R.id.college);
 		regName = (EditText) findViewById(R.id.name);
 		regMobileno = (EditText) findViewById(R.id.regMobileno);
-		txtErrors = (EditText) findViewById(R.id.regErrors);
+		txtErrors = (TextView) findViewById(R.id.regErrors);
 		
 		String username = regUsername.getText().toString();
 		String password = regPassword.getText().toString();
@@ -109,7 +112,7 @@ public class RegisterActivity extends Activity {
 			error_count++;
 		}
 		
-		if (confirm.compareTo(password)==0) {
+		if (confirm.compareTo(password)!=0) {
 			errors += "Passwords must match!\n";
 			error_count++;
 		}
@@ -142,8 +145,6 @@ public class RegisterActivity extends Activity {
 		} else {
 			txtErrors.setText(errors);
 		}
-		
-		finish();
 	}
 
 }

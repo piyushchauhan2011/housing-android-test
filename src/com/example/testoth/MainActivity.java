@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	private static final String TAG = "PIYUSH";
 	DBHelper mHelper;
 	EditText loginUsername;
 	EditText loginPassword;
@@ -46,14 +48,16 @@ public class MainActivity extends Activity {
 	}
 
 	public void checkLogin(View v) {
-		// TODO - Test the running example
+		// CHECKED
 		// check the login details by running a query in database
 		loginUsername = (EditText) findViewById(R.id.loginUsername);
 		loginPassword = (EditText) findViewById(R.id.loginPassword);
 		
 		String username = loginUsername.getText().toString();
 		Cursor login = mHelper.fetchUserByUsername(username);
-		if(login != null) {
+		Log.i(TAG, login.getCount()+"");
+		if(login.getCount()!=0) {
+			login.moveToFirst();
 			String password = login.getString(1);
 			
 			// if success start user details activity

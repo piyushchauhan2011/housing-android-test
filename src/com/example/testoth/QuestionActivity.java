@@ -8,9 +8,12 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class QuestionActivity extends Activity {
 
@@ -18,7 +21,15 @@ public class QuestionActivity extends Activity {
 	SharedPreferences pref;
 	Editor editPref;
 	String current_user;
+	
 	DBHelper mHelper;
+	public final static String TAG = "QUESTION_PIYUSH";
+	
+	String answer;
+	String hint1;
+	String hint2;
+	
+	EditText userAnswer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +45,21 @@ public class QuestionActivity extends Activity {
 		mHelper.open();
 		
 		Cursor mCursor = mHelper.fetchUsersByEmail(current_user);
-		currentQuestion = Integer.parseInt(mCursor.getString(1));
+		Log.i(TAG, mCursor.getCount()+"");
+		mCursor.moveToFirst();
+		
+		currentQuestion = Integer.parseInt(mCursor.getString(8));
+		
+		// fetch question row from questions table
+		Cursor mCursor_question = mHelper.getQuestionByID(currentQuestion+"");
+		mCursor_question.moveToFirst();
+		answer = mCursor_question.getString(2);
+		hint1 = mCursor_question.getString(3);
+		hint2 = mCursor_question.getString(4);
+		
+		Log.i(TAG , currentQuestion+"");
+		
+		userAnswer = (EditText) findViewById(R.id.userAnswer);
 		
 	}
 
@@ -79,7 +104,12 @@ public class QuestionActivity extends Activity {
 		// if correct update to next question the current interface
 		// and add points accordingly, hint 1 = 100-25, hint 2 = 100-50, hint 3 = 0
 		// update the database fields and row
-		
+		if(answer.compareTo(userAnswer.getText().toString())==0) {
+			// success and increment the points and update the profile table
+			// update the UI for next question
+		} else {
+			Toast.makeText(this, "Wrong Answer", Toast.LENGTH_LONG).show();
+		}
 		
 	}
 
