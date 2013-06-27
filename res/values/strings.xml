@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Online Treasure Hunt</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="description">Lorem Ipsum !!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="txtUsernameHint">Email Address</string>
+    <string name="txtPasswordHint">Password</string>
+    <string name="login">Login</string>
+    <string name="loginMessage">Coming Back, have fun !</string>
+    <string name="registerMessage">New User, Want to Explore !</string>
+    <string name="register">Register</string>
+    <string name="notifications">Notifications</string>
+    <string name="currentRankings">Current Rankings</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="confirmPassword">Confirm</string>
+    <string name="college">College</string>
+    <string name="tagline">Tagline/Motto</string>
+    <string name="title_activity_rank">RankActivity</string>
+    <string name="title_activity_user_details">UserDetails</string>
+    <string name="currentQuestion">Current Question</string>
+    <string name="questionsRemaining">Questions Remaining</string>
+    <string name="questionsAttempted">Questions Attempted</string>
+    <string name="score">Score</string>
+    <string name="contentDescription">Minion Dynamically Assigned!</string>
+    <string name="rank">See Your Rank</string>
+    <string name="edit">Edit Details</string>
+    <string name="play">Play Game</string>
+    <string name="title_activity_question">QuestionActivity</string>
+    <string name="submit">Submit</string>
+    <string name="currentQuestionImage">Current Question Image</string>
+    <string name="questionNo">Question Number</string>
+    <string name="hint">Take Hint</string>
+    <string name="title_activity_edit_details">EditDetails</string>
+    <string name="save">Save Details</string>
+    <string name="typeAnswer">Type Your Answer Here!</string>
+    <string name="searchMinion">Search</string>
+    <string name="name">Full Name</string>
+    <string name="mobileno">Mobile Number</string>
+
+</resources>
