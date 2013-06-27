@@ -93,6 +93,8 @@ public class DBHelper {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
+			Log.i(TAG, "On Create method is called()!");
+			
 			Log.w(TAG, CREATE_LOGIN_TABLE);
 			db.execSQL(CREATE_LOGIN_TABLE);
 			
@@ -119,16 +121,20 @@ public class DBHelper {
 	}
 
 	public DBHelper(Context ctx) {
+		// CHECKED
 		this.mCtx = ctx;
 	}
 
 	public DBHelper open() throws SQLException {
+		// CHECKED
 		mDbHelper = new DatabaseHelper(mCtx);
 		mDb = mDbHelper.getWritableDatabase();
+		Log.i(TAG, "Creating the database!");
 		return this;
 	}
 
 	public void close() {
+		// CHECKED
 		if (mDbHelper != null) {
 			mDbHelper.close();
 		}
@@ -136,7 +142,7 @@ public class DBHelper {
 
 	public long registerUser(String username, String password, String name,
 			String mobileno, String tagline, String college) {
-
+		// CHECKED
 		ContentValues login_initialValues = new ContentValues();
 		login_initialValues.put(KEY_USERNAME, username);
 		login_initialValues.put(KEY_PASSWORD, password);
@@ -166,7 +172,7 @@ public class DBHelper {
 	}
 
 	public boolean deleteAllUsers() {
-
+		// CHECKED
 		int doneDelete = 0;
 		doneDelete = mDb.delete(LOGIN_TABLE, null, null);
 		Log.w(TAG, Integer.toString(doneDelete));
@@ -177,6 +183,7 @@ public class DBHelper {
 	}
 
 	public Cursor fetchUsersByEmail(String inputText) throws SQLException {
+		// CHECKED
 		Log.w(TAG, inputText);
 		Cursor mCursor = null;
 		if (inputText == null || inputText.length() == 0) {
@@ -197,7 +204,7 @@ public class DBHelper {
 	}
 
 	public Cursor fetchAllUsers() {
-
+		// CHECKED
 		Cursor mCursor = mDb.query(PROFILE_TABLE, new String[] { KEY_EMAIL,
 				KEY_NAME, KEY_MOBILENO, KEY_TAGLINE, KEY_SCORE_ACHIEVED, KEY_COLLEGE, KEY_SOLVED_QUESTIONS, KEY_TIME }
 				, null, null, null, null, null);
@@ -208,18 +215,20 @@ public class DBHelper {
 	}
 	
 	public Cursor fetchUserByUsername(String username) {
+		// CHECKED
 		Cursor mCursor = mDb.query(true, LOGIN_TABLE, new String[] { KEY_USERNAME,  KEY_PASSWORD },
-					KEY_USERNAME + " = " + username , null, null, null, null, null);
+					KEY_USERNAME + " = '" + username + "'", null, null, null, null, null);
 		return mCursor;				
 	}
 	
 	public boolean updateProfile(String old_username, String username, String password, String name,
 			String mobileno, String tagline, String college) {
+		// CHECKED
 		boolean result = false;
 		ContentValues login_updates = new ContentValues();
 		login_updates.put(KEY_USERNAME, username);
 		login_updates.put(KEY_PASSWORD, password);
-		result = mDb.update(LOGIN_TABLE, login_updates, KEY_USERNAME + " = " + old_username, null) > 0;
+		result = mDb.update(LOGIN_TABLE, login_updates, KEY_USERNAME + " = '" + old_username + "'", null) > 0;
 		
 		ContentValues profile_updates = new ContentValues();
 		profile_updates.put(KEY_EMAIL, username);
@@ -227,7 +236,7 @@ public class DBHelper {
 		profile_updates.put(KEY_MOBILENO, mobileno);
 		profile_updates.put(KEY_TAGLINE, tagline);
 		profile_updates.put(KEY_COLLEGE, college);
-		result = mDb.update(PROFILE_TABLE, profile_updates, KEY_EMAIL + " = " + old_username, null) > 0;
+		result = mDb.update(PROFILE_TABLE, profile_updates, KEY_EMAIL + " = '" + old_username + "'", null) > 0;
 		return result;
 	}
 	
@@ -246,12 +255,14 @@ public class DBHelper {
 	}
 	
 	public Cursor getQuestionByID(String question_no) {
+		// CHECKED
 		Cursor mCursor = mDb.query(true, QUESTIONS_TABLE, new String[] { KEY_QUESTION_NO,  KEY_QUESTION_ID,  KEY_ANSWER,  KEY_HINT1,  KEY_HINT2 }
-		, KEY_QUESTION_NO + " = " + question_no, null, null, null, null, null);
+		, KEY_QUESTION_NO + " = '" + question_no + "'", null, null, null, null, null);
 		return mCursor;
 	}
 
 	public long insertQuestion(String question_no, String question_id, String answer, String hint1, String hint2) {
+		// CHECKED
 		ContentValues questionData = new ContentValues();
 		questionData.put(KEY_QUESTION_NO, question_no);
 		questionData.put(KEY_QUESTION_ID, question_id);

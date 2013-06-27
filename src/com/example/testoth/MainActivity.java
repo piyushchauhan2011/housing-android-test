@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
 		mHelper = new DBHelper(this);
 		mHelper.open();
 		
+		Toast.makeText(this, "Hello Application!", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
