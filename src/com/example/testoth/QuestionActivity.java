@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuestionActivity extends Activity {
@@ -33,6 +34,7 @@ public class QuestionActivity extends Activity {
 	
 	EditText userAnswer;
 	ImageView displayQuestion;
+	TextView showQuestionNo;
 	
 	Cursor mCursor_question;
 	Cursor mCursor;
@@ -70,6 +72,8 @@ public class QuestionActivity extends Activity {
 		
 		displayQuestion = (ImageView) findViewById(R.id.displayQuestion);
 		displayQuestion.setImageResource(question_id);
+		showQuestionNo = (TextView) findViewById(R.id.showQuestionNo);
+		showQuestionNo.setText(currentQuestion+"");
 		
 	}
 
@@ -108,7 +112,7 @@ public class QuestionActivity extends Activity {
 	}
 	
 	public void submitAnswer(View v) {
-		// TODO
+		// CHECKED
 		// check the Answer corresponding to current Question
 		// Display Toast correct, wrong, take hint etc..
 		// if correct update to next question the current interface
@@ -118,9 +122,13 @@ public class QuestionActivity extends Activity {
 			Toast.makeText(this, "Correct Answer!", Toast.LENGTH_LONG).show();
 			// success and increment the points and update the profile table
 			// update the UI for next question
-			int currentScore = Integer.parseInt(mCursor.getString(4));
+			Cursor mCursor_updated = mHelper.fetchUsersByEmail(current_user);
+			
+			int currentScore = Integer.parseInt(mCursor_updated.getString(4));
+			int hint=1;
 			currentScore+=100;
-			String solved_questions = mCursor.getString(7);
+			mHelper.updateProfileForHint(current_user, currentScore+"", hint+"");
+			String solved_questions = mCursor_updated.getString(7);
 			solved_questions+=(","+currentQuestion);
 			mHelper.updateProfileForCurrent(current_user, currentScore+"", (currentQuestion+=1)+"", solved_questions);
 			Bundle tempBundle = new Bundle();
@@ -131,7 +139,7 @@ public class QuestionActivity extends Activity {
 	}
 
 	public void showHint(View v) {
-		// TODO
+		// CHECKED
 		// retrieve hint for the current question from db
 		// make a message string
 		// display toast with the current message string

@@ -254,7 +254,7 @@ public class DBHelper {
 	}
 	
 	public boolean updateProfileForHint(String username, String updated_score, String hint) {
-		// TODO
+		// CHECKED
 		// update the table with hint
 		// deduced new score should be updated
 		ContentValues hint_update = new ContentValues();
@@ -295,6 +295,14 @@ public class DBHelper {
 		insertQuestion(7+"", R.drawable._18+"", "Iskcon temple delhi", "Situated in India", "Iskcon temple delhi");
 		insertQuestion(8+"", R.drawable._19+"", "pasodoble", "Spanish dance form.", "pasodoble");
 		insertQuestion(9+"", R.drawable._20+"", "Ban ki moon,united nations", "This is an international organization.", "Ban ki moon,united nations");
+	}
+	
+	public boolean deleteAllQuestions() {
+		// CHECKED
+		int doneDelete = 0;
+		doneDelete = mDb.delete(QUESTIONS_TABLE, null, null);
+		Log.w(TAG, Integer.toString(doneDelete));
+		return doneDelete > 0;
 	}
 	
 	public long insertNotification(String notification) {
