@@ -188,12 +188,12 @@ public class DBHelper {
 		Cursor mCursor = null;
 		if (inputText == null || inputText.length() == 0) {
 			mCursor = mDb.query(PROFILE_TABLE, new String[] { KEY_EMAIL,
-					KEY_NAME, KEY_MOBILENO, KEY_TAGLINE, KEY_SCORE_ACHIEVED, KEY_COLLEGE, KEY_SOLVED_QUESTIONS, KEY_TIME, KEY_CURRENT }
+					KEY_NAME, KEY_MOBILENO, KEY_TAGLINE, KEY_SCORE_ACHIEVED, KEY_COLLEGE, KEY_PIC, KEY_SOLVED_QUESTIONS, KEY_CURRENT, KEY_TIME, KEY_HINT }
 					, null,	null, null, null, null);
 
 		} else {
 			mCursor = mDb.query(true, PROFILE_TABLE, new String[] { KEY_EMAIL,
-					KEY_NAME, KEY_MOBILENO, KEY_TAGLINE, KEY_SCORE_ACHIEVED, KEY_COLLEGE, KEY_SOLVED_QUESTIONS, KEY_TIME, KEY_CURRENT }
+					KEY_NAME, KEY_MOBILENO, KEY_TAGLINE, KEY_SCORE_ACHIEVED, KEY_COLLEGE, KEY_PIC, KEY_SOLVED_QUESTIONS, KEY_CURRENT, KEY_TIME, KEY_HINT }
 					, KEY_EMAIL + " like '%" + inputText + "%'", null, null, null, null, null);
 		}
 		if (mCursor != null) {
