@@ -118,7 +118,10 @@ public class QuestionActivity extends Activity {
 		// if correct update to next question the current interface
 		// and add points accordingly, hint 1 = 100-50, hint 2 = 100-100;
 		// update the database fields and row
-		if(answer.compareTo(userAnswer.getText().toString())==0) {
+		String u_answer = userAnswer.getText().toString();
+		u_answer = u_answer.toLowerCase();
+		answer = answer.toLowerCase();
+		if(answer.compareTo(u_answer)==0) {
 			Toast.makeText(this, "Correct Answer!", Toast.LENGTH_LONG).show();
 			// success and increment the points and update the profile table
 			// update the UI for next question

@@ -40,5 +40,6 @@
     <string name="searchMinion">Search</string>
     <string name="name">Full Name</string>
     <string name="mobileno">Mobile Number</string>
+    <string name="textview">TextView</string>
 
 </resources>

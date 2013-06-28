@@ -184,6 +184,7 @@ public final class R {
         public static final int searchMinion=0x7f050024;
         public static final int submit=0x7f05001d;
         public static final int tagline=0x7f050011;
+        public static final int textview=0x7f050027;
         public static final int title_activity_edit_details=0x7f050021;
         public static final int title_activity_question=0x7f05001c;
         public static final int title_activity_rank=0x7f050012;

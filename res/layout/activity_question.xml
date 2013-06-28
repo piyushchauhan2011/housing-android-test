@@ -66,7 +66,8 @@
         android:id="@+id/showQuestionNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/displayQuestion"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/displayQuestion"
+        android:layout_centerHorizontal="true"
+        android:text="@string/textview" />
 
 </RelativeLayout>
