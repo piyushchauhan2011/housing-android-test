@@ -112,7 +112,7 @@ public class QuestionActivity extends Activity {
 		// check the Answer corresponding to current Question
 		// Display Toast correct, wrong, take hint etc..
 		// if correct update to next question the current interface
-		// and add points accordingly, hint 1 = 100-25, hint 2 = 100-50, hint 3 = 0
+		// and add points accordingly, hint 1 = 100-50, hint 2 = 100-100;
 		// update the database fields and row
 		if(answer.compareTo(userAnswer.getText().toString())==0) {
 			Toast.makeText(this, "Correct Answer!", Toast.LENGTH_LONG).show();
@@ -135,5 +135,29 @@ public class QuestionActivity extends Activity {
 		// retrieve hint for the current question from db
 		// make a message string
 		// display toast with the current message string
+		Cursor mCursor_updated = mHelper.fetchUsersByEmail(current_user);
+		String tmp = mCursor_updated.getString(10);
+		int hint = Integer.parseInt(tmp);
+		int currentScore = Integer.parseInt(mCursor_updated.getString(4));
+		if(hint==1) {
+			Toast.makeText(this, "Hint : " + hint1, Toast.LENGTH_LONG).show();
+			hint++;
+			currentScore+=(-50);
+			mHelper.updateProfileForHint(current_user, currentScore+"", hint+"");	
+		} else if(hint==2) {
+			Toast.makeText(this, "Answer : " + hint2, Toast.LENGTH_LONG).show();
+			hint=1;
+			currentScore+=(-50);
+			mHelper.updateProfileForHint(current_user, currentScore+"", hint+"");
+			
+			Cursor mCursor_new = mHelper.fetchUsersByEmail(current_user);
+			currentScore = Integer.parseInt(mCursor_new.getString(4));
+			currentScore+=100;
+			String solved_questions = mCursor_new.getString(7);
+			solved_questions+=(","+currentQuestion);
+			mHelper.updateProfileForCurrent(current_user, currentScore+"", (currentQuestion+=1)+"", solved_questions);
+			Bundle tempBundle = new Bundle();
+			onCreate(tempBundle);
+		}
 	}
 }

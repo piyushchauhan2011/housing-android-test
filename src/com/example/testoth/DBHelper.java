@@ -241,7 +241,7 @@ public class DBHelper {
 	}
 	
 	public boolean updateProfileForCurrent(String username, String new_score, String current, String solved_questions) {
-		// TODO
+		// CHECKED
 		// update table with new score and increment the current question of the user
 		// update the solved questions field
 		ContentValues score_update = new ContentValues();
@@ -257,7 +257,12 @@ public class DBHelper {
 		// TODO
 		// update the table with hint
 		// deduced new score should be updated
-		return true;
+		ContentValues hint_update = new ContentValues();
+		hint_update.put(KEY_SCORE_ACHIEVED, updated_score);
+		hint_update.put(KEY_HINT, hint);
+		
+		boolean result = mDb.update(PROFILE_TABLE, hint_update, KEY_EMAIL + " = '" + username + "'", null) > 0;
+		return result;
 	}
 	
 	public Cursor getQuestionByID(String question_no) {
