@@ -26,12 +26,16 @@ public class QuestionActivity extends Activity {
 	DBHelper mHelper;
 	public final static String TAG = "QUESTION_PIYUSH";
 	
+	int question_id;
 	String answer;
 	String hint1;
 	String hint2;
 	
 	EditText userAnswer;
 	ImageView displayQuestion;
+	
+	Cursor mCursor_question;
+	Cursor mCursor;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +50,26 @@ public class QuestionActivity extends Activity {
 		mHelper = new DBHelper(this);
 		mHelper.open();
 		
-		Cursor mCursor = mHelper.fetchUsersByEmail(current_user);
+		mCursor = mHelper.fetchUsersByEmail(current_user);
 		Log.i(TAG, mCursor.getCount()+"");
 		mCursor.moveToFirst();
 		
 		currentQuestion = Integer.parseInt(mCursor.getString(8));
 		
-//		// fetch question row from questions table
-//		Cursor mCursor_question = mHelper.getQuestionByID(currentQuestion+"");
-//		mCursor_question.moveToFirst();
-//		answer = mCursor_question.getString(2);
-//		hint1 = mCursor_question.getString(3);
-//		hint2 = mCursor_question.getString(4);
-//		
-//		Log.i(TAG , currentQuestion+"");
+		// fetch question row from questions table
+		mCursor_question = mHelper.getQuestionByID(currentQuestion+"");
+		mCursor_question.moveToFirst();
+		question_id = Integer.parseInt(mCursor_question.getString(1));
+		answer = mCursor_question.getString(2);
+		hint1 = mCursor_question.getString(3);
+		hint2 = mCursor_question.getString(4);
+		
+		Log.i(TAG , currentQuestion+"");
 		
 		userAnswer = (EditText) findViewById(R.id.userAnswer);
 		
 		displayQuestion = (ImageView) findViewById(R.id.displayQuestion);
-		//displayQuestion.setId(R.drawable._1);
+		displayQuestion.setImageResource(question_id);
 		
 	}
 
@@ -110,8 +115,16 @@ public class QuestionActivity extends Activity {
 		// and add points accordingly, hint 1 = 100-25, hint 2 = 100-50, hint 3 = 0
 		// update the database fields and row
 		if(answer.compareTo(userAnswer.getText().toString())==0) {
+			Toast.makeText(this, "Correct Answer!", Toast.LENGTH_LONG).show();
 			// success and increment the points and update the profile table
 			// update the UI for next question
+			int currentScore = Integer.parseInt(mCursor.getString(4));
+			currentScore+=100;
+			String solved_questions = mCursor.getString(7);
+			solved_questions+=(","+currentQuestion);
+			mHelper.updateProfileForCurrent(current_user, currentScore+"", (currentQuestion+=1)+"", solved_questions);
+			Bundle tempBundle = new Bundle();
+			onCreate(tempBundle);
 		} else {
 			Toast.makeText(this, "Wrong Answer", Toast.LENGTH_LONG).show();
 		}

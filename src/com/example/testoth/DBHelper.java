@@ -244,7 +244,13 @@ public class DBHelper {
 		// TODO
 		// update table with new score and increment the current question of the user
 		// update the solved questions field
-		return true;
+		ContentValues score_update = new ContentValues();
+		score_update.put(KEY_SCORE_ACHIEVED, new_score);
+		score_update.put(KEY_CURRENT, current);
+		score_update.put(KEY_SOLVED_QUESTIONS, solved_questions);
+		
+		boolean result = mDb.update(PROFILE_TABLE, score_update, KEY_EMAIL + " = '" + username + "'", null) > 0;
+		return result;
 	}
 	
 	public boolean updateProfileForHint(String username, String updated_score, String hint) {
@@ -275,6 +281,15 @@ public class DBHelper {
 	public void insertSomeQuestions() {
 		// TODO
 		// Insert questions via method insertQuestion(...)
+		insertQuestion(1+"", R.drawable._1 + "", "Steve Bucknor", "He/She is not a player.", "Steve Bucknor");
+		insertQuestion(2+"", R.drawable._4+"", "career golden slam", "These are tennis players.", "career golden slam");
+		insertQuestion(3+"", R.drawable._9+"", "Kundan Shah", "Its a bollywood flick released in 80''s.", "Kundan Shah");
+		insertQuestion(4+"", R.drawable._11+"", "reebok", "One is ex-MD ,another is COO.", "reebok");
+		insertQuestion(5+"", R.drawable._12+"", "once upon a time", "The character is snow white.", "once upon a time");
+		insertQuestion(6+"", R.drawable._14+"", "Merlion Statue,Sentosa Island Singapore", "The symbol was designed by the member of souvenir committee.", "Merlion Statue,Sentosa Island Singapore");
+		insertQuestion(7+"", R.drawable._18+"", "Iskcon temple delhi", "Situated in India", "Iskcon temple delhi");
+		insertQuestion(8+"", R.drawable._19+"", "pasodoble", "Spanish dance form.", "pasodoble");
+		insertQuestion(9+"", R.drawable._20+"", "Ban ki moon,united nations", "This is an international organization.", "Ban ki moon,united nations");
 	}
 	
 	public long insertNotification(String notification) {

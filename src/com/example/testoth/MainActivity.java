@@ -37,6 +37,7 @@ public class MainActivity extends Activity {
 		mHelper = new DBHelper(this);
 		mHelper.open();
 		
+		// mHelper.insertSomeQuestions();
 		Toast.makeText(this, "Hello Application!", Toast.LENGTH_LONG).show();
 	}
 
